@@ -2,7 +2,6 @@
  * Inspired by the body-scroll-toggle npm package
  * https://www.npmjs.com/package/body-scroll-toggle
  */
-import { getBodyHeight } from './';
 
 const scrollContainer = document.scrollingElement || document.documentElement;
 let scrollTop = null;
@@ -41,6 +40,21 @@ const enable = () => {
 };
 
 const toggle = () => (scrollTop ? disable() : enable());
+
+function getBodyHeight() {
+  const body = document.body;
+  const html = document.documentElement;
+
+  const height = Math.max(
+    body.scrollHeight,
+    body.offsetHeight,
+    html.clientHeight,
+    html.scrollHeight,
+    html.offsetHeight
+  );
+
+  return height;
+}
 
 export default {
   disable,
